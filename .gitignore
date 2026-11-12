@@ -1,0 +1,34 @@
+# Arduino build artifacts
+build/
+.arduino/
+*.elf
+*.hex
+*.bin
+__pycache__/
+*.pyc
+.DS_Store
+*.log
+PLAN.md
+AUDIT_REPORT.md
+
+# Credenciales reales (no versionar)
+secrets.h
+
+# Python app
+venv/
+.venv/
+app/__pycache__/
+
+# ── Higiene de publicación (portfolio) ──────────────────────────────
+PLAN.md
+AUDIT_REPORT.md
+*.log
+.env
+.env.*
+!.env.example
+!.env.sample
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.DS_Store

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="winTitle winDesc">
+  <title id="winTitle">Ventana de captura del evento</title>
+  <desc id="winDesc">Grafico de la desviacion absoluta del eje Z en funcion del tiempo. La ventana abarca un segundo antes y un segundo despues del cruce del umbral de 0,20 g; el pico alcanza 0,62 g y supera la compuerta de publicacion de 0,58 g.</desc>
+
+  <defs>
+    <linearGradient id="wbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b0f14"/>
+      <stop offset="1" stop-color="#0e1620"/>
+    </linearGradient>
+    <linearGradient id="area" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#58a6ff" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#58a6ff" stop-opacity="0.02"/>
+    </linearGradient>
+    <marker id="wArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8b949e"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="650" fill="url(#wbg)"/>
+  <rect x="0" y="0" width="1200" height="4" fill="#bc8cff"/>
+
+  <text x="48" y="44" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="24" font-weight="700" fill="#e6edf3">Ventana de captura del evento</text>
+  <text x="48" y="70" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#8b949e">100 muestras previas + 100 posteriores a 100 Hz = 2 s. El pico se calcula en linea: la ventana no se almacena.</text>
+
+  <!-- regiones -->
+  <rect x="100" y="96" width="500" height="374" fill="#1f6feb" opacity="0.06"/>
+  <rect x="600" y="96" width="500" height="374" fill="#3fb950" opacity="0.05"/>
+  <text x="350" y="116" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#58a6ff">PRE · 100 muestras (anillo)</text>
+  <text x="850" y="116" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#3fb950">POST · 100 muestras</text>
+
+  <!-- grilla horizontal -->
+  <line x1="100" y1="470" x2="1100" y2="470" stroke="#30363d" stroke-width="1.5"/>
+  <line x1="100" y1="363" x2="1100" y2="363" stroke="#21262d" stroke-width="1" stroke-dasharray="3 5"/>
+  <line x1="100" y1="257" x2="1100" y2="257" stroke="#21262d" stroke-width="1" stroke-dasharray="3 5"/>
+  <line x1="100" y1="150" x2="1100" y2="150" stroke="#21262d" stroke-width="1" stroke-dasharray="3 5"/>
+  <line x1="100" y1="96" x2="1100" y2="96" stroke="#21262d" stroke-width="1" stroke-dasharray="3 5"/>
+
+  <!-- grilla vertical -->
+  <line x1="100" y1="96" x2="100" y2="470" stroke="#21262d" stroke-width="1"/>
+  <line x1="350" y1="96" x2="350" y2="470" stroke="#21262d" stroke-width="1"/>
+  <line x1="600" y1="96" x2="600" y2="470" stroke="#f0f6fc" stroke-width="1" stroke-dasharray="4 5" opacity="0.55"/>
+  <line x1="850" y1="96" x2="850" y2="470" stroke="#21262d" stroke-width="1"/>
+  <line x1="1100" y1="96" x2="1100" y2="470" stroke="#21262d" stroke-width="1"/>
+
+  <!-- eje Y -->
+  <text x="88" y="474" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#6e7681">0</text>
+  <text x="88" y="154" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#6e7681">0,80</text>
+  <text x="88" y="261" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#6e7681">0,40</text>
+  <text x="70" y="290" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#6e7681">|devZ|</text>
+  <text x="70" y="304" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#6e7681">[g]</text>
+
+  <!-- umbrales -->
+  <line x1="100" y1="199" x2="1100" y2="199" stroke="#f85149" stroke-width="1.5" stroke-dasharray="7 5"/>
+  <text x="1092" y="192" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#f85149">0,58 g · umbral de publicacion</text>
+
+  <line x1="100" y1="377" x2="1100" y2="377" stroke="#d29922" stroke-width="1.5" stroke-dasharray="7 5"/>
+  <text x="1092" y="370" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#d29922">0,20 g · deteccion</text>
+
+  <line x1="100" y1="400" x2="1100" y2="400" stroke="#3fb950" stroke-width="1" stroke-dasharray="2 5"/>
+  <text x="1092" y="414" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#3fb950">0,15 g · retorno a reposo</text>
+
+  <!-- area y curva -->
+  <path d="M100,461 L175,454 L250,458 L325,449 L390,456 L450,444 L500,451 L530,435 L550,414 L565,393 L580,381 L593,375 L600,374 L610,344 L625,283 L640,227 L653,194 L665,180 L680,183 L695,201 L715,236 L740,283 L770,325 L810,360 L850,386 L900,407 L960,423 L1025,437 L1100,447 L1100,470 L100,470 Z" fill="url(#area)"/>
+  <polyline points="100,461 175,454 250,458 325,449 390,456 450,444 500,451 530,435 550,414 565,393 580,381 593,375 600,374 610,344 625,283 640,227 653,194 665,180 680,183 695,201 715,236 740,283 770,325 810,360 850,386 900,407 960,423 1025,437 1100,447" fill="none" stroke="#58a6ff" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+
+  <!-- cruce -->
+  <circle cx="600" cy="374" r="4.5" fill="#0b0f14" stroke="#d29922" stroke-width="2"/>
+  <text x="612" y="360" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#d29922">cruce en t = 0</text>
+
+  <!-- pico -->
+  <line x1="665" y1="180" x2="665" y2="199" stroke="#f85149" stroke-width="1" stroke-dasharray="3 3"/>
+  <circle cx="665" cy="180" r="5.5" fill="#f85149"/>
+  <circle cx="665" cy="180" r="11" fill="none" stroke="#f85149" stroke-width="1" opacity="0.35"/>
+  <text x="680" y="172" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="700" fill="#f85149">pico = 0,62 g</text>
+  <text x="680" y="188" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#8b949e">supera 0,58 g: se publica</text>
+
+  <!-- eje X -->
+  <text x="100" y="492" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#6e7681">-1,0 s</text>
+  <text x="350" y="492" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#6e7681">-0,5 s</text>
+  <text x="600" y="492" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#f0f6fc">0</text>
+  <text x="850" y="492" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#6e7681">+0,5 s</text>
+  <text x="1100" y="492" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#6e7681">+1,0 s</text>
+
+  <!-- tarjetas de fase -->
+  <rect x="80" y="530" width="336" height="84" rx="8" fill="#161b22" stroke="#30363d"/>
+  <rect x="80" y="530" width="4" height="84" rx="2" fill="#d29922"/>
+  <text x="98" y="554" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#e6edf3">beginCapture()</text>
+  <text x="98" y="574" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#8b949e">escanea preRing[100] y hereda ese maximo.</text>
+  <text x="98" y="592" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#8b949e">eventCount++ y persistencia en RTC.</text>
+
+  <rect x="432" y="530" width="336" height="84" rx="8" fill="#161b22" stroke="#30363d"/>
+  <rect x="432" y="530" width="4" height="84" rx="2" fill="#58a6ff"/>
+  <text x="450" y="554" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#e6edf3">advanceCapture() x100</text>
+  <text x="450" y="574" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#8b949e">cada muestra POST actualiza el maximo.</text>
+  <text x="450" y="592" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#8b949e">Al llegar a 100 cierra la ventana.</text>
+
+  <rect x="784" y="530" width="336" height="84" rx="8" fill="#161b22" stroke="#30363d"/>
+  <rect x="784" y="530" width="4" height="84" rx="2" fill="#f85149"/>
+  <text x="802" y="554" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#e6edf3">finishCapture()</text>
+  <text x="802" y="574" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#8b949e">serie "0.62" siempre · MQTT si pico &gt; 0,58 g.</text>
+  <text x="802" y="592" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#8b949e">Valor en g, sin timestamp propio.</text>
+
+  <text x="1152" y="640" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#484f58">BusAccel-8266-v4 · docs/assets/event-window.svg</text>
+</svg>
