@@ -712,3 +712,55 @@ Copyright (c) 2026 wanderc137
 ```
 
 El software se entrega "tal cual", sin garantía. Para uso en vehículos, la responsabilidad de la instalación eléctrica, la protección contra transitorios y el cumplimiento normativo es de quien despliega el equipo.
+
+## Ficha de evaluación
+
+**Madurez global: 4.0/5**
+
+| Criterio | Nota | Evidencia |
+|---|---:|---|
+| Madurez | 4/5 | v4 con 915 líneas, auditoría sin incidencias y compilación exit 0; las pruebas siguen siendo de banco, no de flota. |
+| Reproducibilidad | 3/5 | FQBN esp8266:esp8266:nodemcuv2 y core 3.1.2 documentados, pero requiere secrets.h propio y no hay tests automatizados; la dispersión de ±20 % depende del montaje. |
+| Documentación | 5/5 | README de 714 líneas, datasheet, developer, bitácora, referencias y tres SVG; solo se detectó una discrepancia menor de puerto MQTT (1883 vs 1886). |
+| Honestidad de límites | 5/5 | Declara IRAM al 93 %, pico falso en el primer segundo, un solo eje y ausencia de GPS, almacenamiento y OTA. |
+| Valor demostrativo | 4/5 | Muestra un pipeline de borde completo con ventana pre/post, setpoint automático y publicación condicional sobre un ESP8266. |
+| Facilidad de despliegue | 3/5 | arduino-cli y broker estándar, pero exige credenciales, Client ID único y margen de IRAM de ~4,5 KB. |
+
+Sirve a quien necesita un detector de golpes verticales de bajo costo y con documentación suficiente para reproducir el montaje. La limitación que más pesa es la medición de un solo eje y sin calibración trazable, que impide comparar vehículos o certificar daños.
+
+## Lo que no funcionó
+
+### v2–v3 · bus I2C — El recuperador I2C dejaba el sensor sin ACK
+
+La secuencia de pulsos sobre SCL/SDA de i2cBusRecover() dejaba al ADXL345 sin responder aunque el bus estuviera sano. Se eliminó la función y el sensor volvió a contestar en 0x53 con WHO_AM_I = 0xE5; el código lleva la nota de no reintroducirla.
+
+### v3 · contador RTC — La RTC escribía más bytes de los debidos
+
+ESP.rtcUserMemoryRead/Write reciben el tamaño en bytes, no en palabras, y las llamadas originales escribían de más. Se corrigió con sizeof(...) y se añadió validación de magic y rango para descartar datos corruptos.
+
+### v4 · contrato MQTT — El topic del plan no era el del firmware
+
+El PLAN especificaba report/peak con JSON {"peak":0.62}, pero el código publicaba report/value con texto plano. Se documentó el contrato real en README, datasheet y developer para que la integración no quedara rota.
+
+### v4 · primera ventana — Pico falso de ~1 g tras el arranque
+
+El anillo de 100 muestras previas arranca con ceros; un golpe en el primer segundo puede calcular una desviación cercana a 1 g. Está declarado como limitación y no se corrigió en v4.
+
+## Preguntas típicas
+
+**¿Qué detecta exactamente?**
+
+Golpes verticales sobre el chasis: mide la desviación del eje Z respecto de un setpoint calculado en reposo y reporta el pico de una ventana de ~2 s. No clasifica el origen del golpe.
+
+**¿Qué no hace?**
+
+No distingue bache, frenazo o reductor, no georreferencia, no guarda eventos localmente y no permite actualizar el firmware por OTA. Tampoco es una instrumentación calibrada.
+
+**¿Cómo se compila y despliega?**
+
+Con arduino-cli compile --fqbn esp8266:esp8266:nodemcuv2, un secrets.h basado en secrets.example.h y upload al NodeMCU. Después se configura el broker MQTT y se verifica el topic <id>/report/online.
+
+**¿Qué se puede reutilizar?**
+
+El anillo pre/post para capturar el contexto de un evento, el setpoint automático con RECAL, la publicación condicional y el watchdog por ping con reinicio.
+

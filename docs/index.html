@@ -1,24 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Cada bache, un dato. · BusAccel</title>
-<meta name="description" content="Nodo ESP8266 con ADXL345 para detectar impactos en un bus: ventana de 2 s a 100 Hz, umbral 0,58 g y MQTT.">
-<meta name="author" content="wanderc137">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Cada bache, un dato. · BusAccel">
-<meta property="og:description" content="Nodo ESP8266 con ADXL345 para detectar impactos en un bus: ventana de 2 s a 100 Hz, umbral 0,58 g y MQTT.">
-<meta property="og:url" content="https://wanderc137.github.io/BusAccel-8266-v4/">
-<meta property="og:image" content="https://wanderc137.github.io/BusAccel-8266-v4/assets/og.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Cada bache, un dato. · BusAccel">
-<meta name="twitter:description" content="Nodo ESP8266 con ADXL345 para detectar impactos en un bus: ventana de 2 s a 100 Hz, umbral 0,58 g y MQTT.">
-<meta name="twitter:image" content="https://wanderc137.github.io/BusAccel-8266-v4/assets/og.png">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2305070c'/><rect x='22' y='22' width='56' height='56' rx='12' fill='none' stroke='%23FFB020' stroke-width='7'/><circle cx='50' cy='50' r='9' fill='%23FFB020'/></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<meta content="Nodo ESP8266 con ADXL345 para detectar impactos en un bus: ventana de 2 s a 100 Hz, umbral 0,58 g y MQTT." name="description"/>
+<meta content="wanderc137" name="author"/>
+<meta content="website" property="og:type"/>
+<meta content="Cada bache, un dato. · BusAccel" property="og:title"/>
+<meta content="Nodo ESP8266 con ADXL345 para detectar impactos en un bus: ventana de 2 s a 100 Hz, umbral 0,58 g y MQTT." property="og:description"/>
+<meta content="https://wanderc137.github.io/BusAccel-8266-v4/" property="og:url"/>
+<meta content="https://wanderc137.github.io/BusAccel-8266-v4/assets/og.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Cada bache, un dato. · BusAccel" name="twitter:title"/>
+<meta content="Nodo ESP8266 con ADXL345 para detectar impactos en un bus: ventana de 2 s a 100 Hz, umbral 0,58 g y MQTT." name="twitter:description"/>
+<meta content="https://wanderc137.github.io/BusAccel-8266-v4/assets/og.png" name="twitter:image"/>
+<link href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;rect width='100' height='100' rx='22' fill='%2305070c'/&gt;&lt;rect x='22' y='22' width='56' height='56' rx='12' fill='none' stroke='%23FFB020' stroke-width='7'/&gt;&lt;circle cx='50' cy='50' r='9' fill='%23FFB020'/&gt;&lt;/svg&gt;" rel="icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;scrollbar-width:none}
@@ -257,179 +258,198 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.08);pa
   .foot-grid{grid-template-columns:1fr}
   .section{padding:72px 0}
 }
+
+.fail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:6px}
+.fail{background:rgba(10,18,24,.55);border:1px solid var(--line);border-radius:14px;padding:18px}
+.fail .v{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.fail h3{font-size:16px;margin:8px 0 6px}
+.fail p{font-size:14px;margin:0;color:var(--muted)}
+.rating-head{display:flex;align-items:center;gap:20px;margin:6px 0 18px;padding:18px 20px;border:1px solid var(--line);border-radius:16px;background:rgba(10,18,24,.5)}
+.rating-avg{font-family:var(--mono);font-size:40px;line-height:1;color:var(--accent)}
+.rating-avg small{font-size:14px;color:var(--muted)}
+.rating-head p{margin:4px 0 0;font-size:14px;color:var(--muted);max-width:70ch}
+.rating{display:grid;gap:2px}
+.rating-row{display:grid;grid-template-columns:165px minmax(90px,1fr) 48px;gap:14px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
+.rating-row:last-child{border-bottom:0}
+.rating-name{font-size:13.5px;color:var(--text)}
+.rating-bar{height:6px;border-radius:99px;background:rgba(148,190,200,.14);overflow:hidden}
+.rating-bar span{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.rating-score{font-family:var(--mono);font-size:12px;color:var(--muted);text-align:right}
+.rating-note{grid-column:1/-1;font-size:12.5px;color:var(--muted);margin:-4px 0 8px}
+.faq{display:grid;gap:10px;margin-top:4px}
+.faq details{border:1px solid var(--line);border-radius:14px;padding:14px 18px;background:rgba(10,18,24,.4)}
+.faq summary{cursor:pointer;font-weight:600;font-size:14.5px;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";float:right;color:var(--accent);font-family:var(--mono)}
+.faq details[open] summary::after{content:"−"}
+.faq p{margin:10px 0 0;font-size:14px;color:var(--muted);line-height:1.7}
+.concept-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:26px;align-items:start}
+.concept-grid p{font-size:15.5px;color:var(--muted);line-height:1.8;margin:0 0 14px}
+.concept-side{border-left:1px solid var(--line);padding-left:22px}
+.concept-side .k{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.concept-side p{font-size:13px;margin:6px 0 16px}
+@media(max-width:760px){.concept-grid,.fail-grid{grid-template-columns:1fr}.concept-side{border-left:0;padding-left:0}}
+
 </style>
-<link rel="stylesheet" href="assets/community.css?v=5"></head>
+<link href="assets/community.css?v=5" rel="stylesheet"/></head>
 <body style="--accent:#FFB020;--accent2:#FF5C5C">
 <div class="grid-overlay"></div>
 <div class="glow one"></div>
 <div class="glow two"></div>
-
 <header class="nav">
-  <div class="wrap nav-inner">
-    <a class="brand" href="#top">
-      <span class="brand-mark"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="3"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/><circle cx="12" cy="12" r="2.5"/></svg></span>
-      <span>BusAccel<small>Portfolio · Sensores &amp; IoT</small></span>
-    </a>
-    <nav class="nav-links" aria-label="Navegación">
-      <a href="#problema">Visión</a>
-      <a href="#como">Cómo funciona</a>
-      <a href="#arquitectura">Arquitectura</a>
-      <a href="#docs">Documentación</a>
-      <a href="#comunidad">Comunidad</a>
-      <a class="btn btn-ghost" style="padding:9px 15px" href="https://github.com/wanderc137/BusAccel-8266-v4" target="_blank" rel="noopener">GitHub</a>
-    </nav>
-  </div>
+<div class="wrap nav-inner">
+<a class="brand" href="#top">
+<span class="brand-mark"><svg viewbox="0 0 24 24"><rect height="14" rx="3" width="14" x="5" y="5"></rect><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"></path><circle cx="12" cy="12" r="2.5"></circle></svg></span>
+<span>BusAccel<small>Portfolio · Sensores &amp; IoT</small></span>
+</a>
+<nav aria-label="Navegación" class="nav-links">
+<a href="#problema">Visión</a>
+<a href="#como">Cómo funciona</a>
+<a href="#arquitectura">Arquitectura</a>
+<a href="#docs">Documentación</a>
+<a href="#comunidad">Comunidad</a>
+<a class="btn btn-ghost" href="https://github.com/wanderc137/BusAccel-8266-v4" rel="noopener" style="padding:9px 15px" target="_blank">GitHub</a>
+</nav>
+</div>
 </header>
-
 <main id="top">
 <section class="hero">
-  <div class="wrap hero-grid">
-    <div class="hero-copy">
-      <div class="eyebrow">ESP8266 · ADXL345 · MQTT</div>
-      <h1>Cada bache,<br><span class='grad'>un dato.</span></h1>
-      <p class="lead">Un nodo ESP8266 + ADXL345 que detecta golpes en el chasis, mide el pico en una ventana de 2 segundos y publica solo lo que supera 0,58 g.</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="https://github.com/wanderc137/BusAccel-8266-v4" target="_blank" rel="noopener">Ver el repositorio <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="btn btn-ghost" href="https://github.com/wanderc137/BusAccel-8266-v4#readme" target="_blank" rel="noopener">Leer la documentación</a>
-      </div>
-      <div class="hero-badges"><span class="badge">ESP8266</span><span class="badge">ADXL345</span><span class="badge">MQTT</span><span class="badge">Arduino</span><span class="badge">I2C</span><span class="badge">MIT</span></div>
-    </div>
-    <div class="hero-visual">
-      <div class="visual-frame"><img src="assets/architecture.svg" alt="Nodo BusAccel con ESP8266, ADXL345 y broker MQTT"></div>
-      <div class="visual-caption">El acelerómetro mide; el ESP8266 filtra; MQTT recibe solo eventos.</div>
-      <div class="float-chip"><span class="live-dot"></span>0,58 g · evento</div>
-    </div>
-  </div>
+<div class="wrap hero-grid">
+<div class="hero-copy">
+<div class="eyebrow">ESP8266 · ADXL345 · MQTT</div>
+<h1>Cada bache,<br/><span class="grad">un dato.</span></h1>
+<p class="lead">Un nodo ESP8266 + ADXL345 que detecta golpes en el chasis, mide el pico en una ventana de 2 segundos y publica solo lo que supera 0,58 g.</p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="https://github.com/wanderc137/BusAccel-8266-v4" rel="noopener" target="_blank">Ver el repositorio <svg viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<a class="btn btn-ghost" href="https://github.com/wanderc137/BusAccel-8266-v4#readme" rel="noopener" target="_blank">Leer la documentación</a>
+</div>
+<div class="hero-badges"><span class="badge">ESP8266</span><span class="badge">ADXL345</span><span class="badge">MQTT</span><span class="badge">Arduino</span><span class="badge">I2C</span><span class="badge">MIT</span></div>
+</div>
+<div class="hero-visual">
+<div class="visual-frame"><img alt="Nodo BusAccel con ESP8266, ADXL345 y broker MQTT" src="assets/architecture.svg"/></div>
+<div class="visual-caption">El acelerómetro mide; el ESP8266 filtra; MQTT recibe solo eventos.</div>
+<div class="float-chip"><span class="live-dot"></span>0,58 g · evento</div>
+</div>
+</div>
 </section>
-
-<section class="stats"><div class="wrap stats-grid"><div class="stat"><div class="stat-value">100 Hz</div><div class="stat-label">muestreo</div></div><div class="stat"><div class="stat-value">±2 g</div><div class="stat-label">rango</div></div><div class="stat"><div class="stat-value">0,58 g</div><div class="stat-label">publicación</div></div><div class="stat"><div class="stat-value">2 s</div><div class="stat-label">ventana</div></div></div></section>
-
+<section class="stats"><div class="wrap stats-grid"><div class="stat"><div class="stat-value">100 Hz</div><div class="stat-label">muestreo</div></div><div class="stat"><div class="stat-value">±2 g</div><div class="stat-label">rango</div></div><div class="stat"><div class="stat-value">0,58 g</div><div class="stat-label">publicación</div></div><div class="stat"><div class="stat-value">2 s</div><div class="stat-label">ventana</div></div></div></section><section class="section" id="concepto"><div class="wrap"><div class="section-head"><div class="kicker">El concepto</div><h2>Qué es y por qué existe</h2><p class="section-sub">El problema, el enfoque y el alcance real del proyecto.</p></div><div class="concept-grid"><div><p>Firmware para un NodeMCU ESP8266 con acelerómetro ADXL345 que detecta golpes verticales en el chasis de un bus urbano y publica el pico por MQTT. Muestrea a ~100 Hz, calcula un setpoint automático en reposo y conserva 100 muestras previas y 100 posteriores (unos 2 s) por evento; solo publica si el pico supera 0,58 g, aunque siempre imprime una línea por evento. Apunta a quien necesita un detector de impactos de bajo costo y diagnosticable por puerto serie.</p><p>Demuestra la cadena completa: calibración en caliente por comando MQTT, detección con umbral, publicación condicional en texto plano y reconexión no bloqueante. No distingue bache, frenazo o reductor porque solo mide el eje Z; no aporta GPS, timestamp propio, almacenamiento local ni OTA; no sustituye una medición trazable y sus pruebas son de banco, con dispersión de ±20 %.</p></div><div class="concept-side"><div class="k">Cómo leer esta ficha</div><p>Los tropiezos salen de la bitácora y de las versiones tempranas. La evaluación usa seis criterios fijos, de 1 a 5, y no premia la espectacularidad: premia que el proyecto se pueda reproducir y entender.</p></div></div></div></section>
 <section class="section" id="problema">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="kicker">01 — La idea</div>
-      <h2>No todos los golpes merecen un mensaje</h2>
-      <p class="section-sub">El bus vibra todo el tiempo. El reto es distinguir el ruido de la carretera de un impacto que justifique revisar el vehículo.</p>
-    </div>
-    <div class="split">
-      <div class="card reveal"><div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.5 20h19L12 3Z"/><path d="M12 9v5M12 17v.01"/></svg></div><h3>El problema</h3><p>Publicar cada lectura del acelerómetro satura la red y llena la base de datos con vibración normal. Ignorar todo lo que supera un umbral fijo genera falsos positivos por baches menores.</p></div>
-      <div class="card reveal"><div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/></svg></div><h3>La solución</h3><p>El nodo muestrea a 100 Hz, calcula un setpoint automático y abre una ventana de ±1 s alrededor del evento. Solo publica si el pico supera 0,58 g, con el contexto necesario para analizarlo después.</p></div>
-    </div>
-  </div>
+<div class="wrap">
+<div class="section-head reveal">
+<div class="kicker">01 — La idea</div>
+<h2>No todos los golpes merecen un mensaje</h2>
+<p class="section-sub">El bus vibra todo el tiempo. El reto es distinguir el ruido de la carretera de un impacto que justifique revisar el vehículo.</p>
+</div>
+<div class="split">
+<div class="card reveal"><div class="icon"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M12 3 2.5 20h19L12 3Z"></path><path d="M12 9v5M12 17v.01"></path></svg></div><h3>El problema</h3><p>Publicar cada lectura del acelerómetro satura la red y llena la base de datos con vibración normal. Ignorar todo lo que supera un umbral fijo genera falsos positivos por baches menores.</p></div>
+<div class="card reveal"><div class="icon"><svg aria-hidden="true" viewbox="0 0 24 24"><rect height="12" rx="2" width="12" x="6" y="6"></rect><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"></path><rect height="5" rx="1" width="5" x="9.5" y="9.5"></rect></svg></div><h3>La solución</h3><p>El nodo muestrea a 100 Hz, calcula un setpoint automático y abre una ventana de ±1 s alrededor del evento. Solo publica si el pico supera 0,58 g, con el contexto necesario para analizarlo después.</p></div>
+</div>
+</div>
 </section>
-
 <section class="section tight" id="como">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="kicker">02 — El recorrido</div>
-      <h2>Cómo funciona, paso a paso</h2>
-      <p class="section-sub">Medir, filtrar y publicar solo lo que importa.</p>
-    </div>
-    <div class="timeline reveal"><div class="step"><div class="step-num">01</div><div class="step-body"><h3>Muestrear</h3><p>El ADXL345 entrega aceleración en los tres ejes a 100 Hz por I2C.</p></div></div><div class="step"><div class="step-num">02</div><div class="step-body"><h3>Calibrar</h3><p>El nodo calcula un setpoint con la vibración de base y lo ajusta con el comando RECAL.</p></div></div><div class="step"><div class="step-num">03</div><div class="step-body"><h3>Detectar</h3><p>Cuando la aceleración supera el umbral de evento, se abre una ventana de ±1 s.</p></div></div><div class="step"><div class="step-num">04</div><div class="step-body"><h3>Publicar</h3><p>Si el pico de la ventana supera 0,58 g, se envía el evento por MQTT con sus datos.</p></div></div></div>
-  </div>
+<div class="wrap">
+<div class="section-head reveal">
+<div class="kicker">02 — El recorrido</div>
+<h2>Cómo funciona, paso a paso</h2>
+<p class="section-sub">Medir, filtrar y publicar solo lo que importa.</p>
+</div>
+<div class="timeline reveal"><div class="step"><div class="step-num">01</div><div class="step-body"><h3>Muestrear</h3><p>El ADXL345 entrega aceleración en los tres ejes a 100 Hz por I2C.</p></div></div><div class="step"><div class="step-num">02</div><div class="step-body"><h3>Calibrar</h3><p>El nodo calcula un setpoint con la vibración de base y lo ajusta con el comando RECAL.</p></div></div><div class="step"><div class="step-num">03</div><div class="step-body"><h3>Detectar</h3><p>Cuando la aceleración supera el umbral de evento, se abre una ventana de ±1 s.</p></div></div><div class="step"><div class="step-num">04</div><div class="step-body"><h3>Publicar</h3><p>Si el pico de la ventana supera 0,58 g, se envía el evento por MQTT con sus datos.</p></div></div></div>
+</div>
 </section>
-
 <section class="section tight" id="arquitectura">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="kicker">03 — Bajo el capó</div>
-      <h2>El filtro está en el borde</h2>
-      <p class="section-sub">Publicar menos es parte del diseño: el nodo decide antes de gastar red.</p>
-    </div>
-    <figure class="figure reveal"><img src="assets/architecture.svg" alt="Nodo BusAccel con ESP8266, ADXL345 y broker MQTT" loading="lazy"><figcaption>El acelerómetro mide; el ESP8266 filtra; MQTT recibe solo eventos.</figcaption></figure>
-    <div class="arch-points reveal"><div class="card"><h4>Setpoint automático</h4><p>La vibración normal del bus define la línea base, no un valor mágico.</p></div><div class="card"><h4>Ventana con contexto</h4><p>El evento guarda lo que pasó antes y después del pico, no solo el máximo.</p></div><div class="card"><h4>Publicación selectiva</h4><p>Solo los eventos que superan 0,58 g llegan al broker.</p></div></div>
-  </div>
+<div class="wrap">
+<div class="section-head reveal">
+<div class="kicker">03 — Bajo el capó</div>
+<h2>El filtro está en el borde</h2>
+<p class="section-sub">Publicar menos es parte del diseño: el nodo decide antes de gastar red.</p>
+</div>
+<figure class="figure reveal"><img alt="Nodo BusAccel con ESP8266, ADXL345 y broker MQTT" loading="lazy" src="assets/architecture.svg"/><figcaption>El acelerómetro mide; el ESP8266 filtra; MQTT recibe solo eventos.</figcaption></figure>
+<div class="arch-points reveal"><div class="card"><h4>Setpoint automático</h4><p>La vibración normal del bus define la línea base, no un valor mágico.</p></div><div class="card"><h4>Ventana con contexto</h4><p>El evento guarda lo que pasó antes y después del pico, no solo el máximo.</p></div><div class="card"><h4>Publicación selectiva</h4><p>Solo los eventos que superan 0,58 g llegan al broker.</p></div></div>
+</div>
 </section>
-
 <section class="section tight">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="kicker">04 — Lo que lo hace distinto</div>
-      <h2>Decisiones de ingeniería</h2>
-      <p class="section-sub">Un nodo de borde que decide antes de transmitir.</p>
-    </div>
-    <div class="features reveal"><div class="feature"><div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18a8 8 0 1 1 16 0"/><path d="m12 14 4-4"/><circle cx="12" cy="14" r="1.5"/></svg></div><h3>ADXL345</h3><p>Acelerómetro de tres ejes por I2C, configuración de rango y frecuencia.</p></div><div class="feature"><div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12h3l2-7 4 14 3-9 2 4h6"/></svg></div><h3>Detección de picos</h3><p>Ventana de ±1 s a 100 Hz para capturar el contexto del impacto.</p></div><div class="feature"><div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 19a4.5 4.5 0 0 0 .4-9A6 6 0 0 0 6.2 9 4.5 4.5 0 0 0 7 19h10.5Z"/><path d="m9 14 6 6M15 14l-6 6"/></svg></div><h3>MQTT</h3><p>Publicación de eventos con tópico y payload documentados.</p></div><div class="feature"><div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div><h3>RECAL</h3><p>Comando para recalibrar el setpoint cuando cambia la carga o el vehículo.</p></div><div class="feature"><div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.4 7.5 9.5 4.3-1.1 7.5-4.9 7.5-9.5V6L12 3Z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>WiFi local</h3><p>Credenciales en secrets.h, fuera del repositorio.</p></div><div class="feature"><div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h14v18H6a2 2 0 0 1-2-2V5Z"/><path d="M4 19a2 2 0 0 1 2-2h14"/></svg></div><h3>Trazabilidad</h3><p>Cada evento conserva los datos necesarios para correlacionarlo con un viaje.</p></div></div>
-  </div>
+<div class="wrap">
+<div class="section-head reveal">
+<div class="kicker">04 — Lo que lo hace distinto</div>
+<h2>Decisiones de ingeniería</h2>
+<p class="section-sub">Un nodo de borde que decide antes de transmitir.</p>
+</div>
+<div class="features reveal"><div class="feature"><div class="icon"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M4 18a8 8 0 1 1 16 0"></path><path d="m12 14 4-4"></path><circle cx="12" cy="14" r="1.5"></circle></svg></div><h3>ADXL345</h3><p>Acelerómetro de tres ejes por I2C, configuración de rango y frecuencia.</p></div><div class="feature"><div class="icon"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M2 12h3l2-7 4 14 3-9 2 4h6"></path></svg></div><h3>Detección de picos</h3><p>Ventana de ±1 s a 100 Hz para capturar el contexto del impacto.</p></div><div class="feature"><div class="icon"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M17.5 19a4.5 4.5 0 0 0 .4-9A6 6 0 0 0 6.2 9 4.5 4.5 0 0 0 7 19h10.5Z"></path><path d="m9 14 6 6M15 14l-6 6"></path></svg></div><h3>MQTT</h3><p>Publicación de eventos con tópico y payload documentados.</p></div><div class="feature"><div class="icon"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M17 2l4 4-4 4"></path><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><path d="M7 22l-4-4 4-4"></path><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg></div><h3>RECAL</h3><p>Comando para recalibrar el setpoint cuando cambia la carga o el vehículo.</p></div><div class="feature"><div class="icon"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.4 7.5 9.5 4.3-1.1 7.5-4.9 7.5-9.5V6L12 3Z"></path><path d="m9 12 2 2 4-4"></path></svg></div><h3>WiFi local</h3><p>Credenciales en secrets.h, fuera del repositorio.</p></div><div class="feature"><div class="icon"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h14v18H6a2 2 0 0 1-2-2V5Z"></path><path d="M4 19a2 2 0 0 1 2-2h14"></path></svg></div><h3>Trazabilidad</h3><p>Cada evento conserva los datos necesarios para correlacionarlo con un viaje.</p></div></div>
+</div>
 </section>
-
-<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">05 — Diagramas</div><h2>El sistema, en dibujos</h2><p class="section-sub">Los diagramas se mantienen en el repositorio y se actualizan con el código.</p></div><div class="gallery"><figure class="figure"><img src="assets/event-window.svg" alt="BusAccel — event window" loading="lazy"><figcaption>Event Window</figcaption></figure><figure class="figure"><img src="assets/pinout.svg" alt="BusAccel — pinout" loading="lazy"><figcaption>Pinout</figcaption></figure></div></div></section>
-
+<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">05 — Diagramas</div><h2>El sistema, en dibujos</h2><p class="section-sub">Los diagramas se mantienen en el repositorio y se actualizan con el código.</p></div><div class="gallery"><figure class="figure"><img alt="BusAccel — event window" loading="lazy" src="assets/event-window.svg"/><figcaption>Event Window</figcaption></figure><figure class="figure"><img alt="BusAccel — pinout" loading="lazy" src="assets/pinout.svg"/><figcaption>Pinout</figcaption></figure></div></div></section>
 <section class="section tight">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="kicker">06 — Stack y arranque</div>
-      <h2>Con qué está construido</h2>
-      <p class="section-sub">Arduino core para ESP8266, biblioteca del ADXL345, PubSubClient para MQTT y WiFiManager o configuración local para la red.</p>
-    </div>
-    <div class="stack-grid">
-      <div class="reveal">
-        <div class="chips"><span class="chip">ESP8266</span><span class="chip">ADXL345</span><span class="chip">Arduino</span><span class="chip">I2C</span><span class="chip">MQTT</span><span class="chip">PubSubClient</span></div>
-        <div class="note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.4 7.5 9.5 4.3-1.1 7.5-4.9 7.5-9.5V6L12 3Z"/><path d="m9 12 2 2 4-4"/></svg><span>Las credenciales WiFi y del broker viven en secrets.h, excluido por .gitignore.</span></div>
-      </div>
-      <div class="terminal reveal">
-        <div class="terminal-bar"><i></i><i></i><i></i><span>BusAccel · compilación</span></div>
-        <pre><span class="p">$</span> arduino-cli compile --fqbn esp8266:esp8266:nodemcuv2 .
+<div class="wrap">
+<div class="section-head reveal">
+<div class="kicker">06 — Stack y arranque</div>
+<h2>Con qué está construido</h2>
+<p class="section-sub">Arduino core para ESP8266, biblioteca del ADXL345, PubSubClient para MQTT y WiFiManager o configuración local para la red.</p>
+</div>
+<div class="stack-grid">
+<div class="reveal">
+<div class="chips"><span class="chip">ESP8266</span><span class="chip">ADXL345</span><span class="chip">Arduino</span><span class="chip">I2C</span><span class="chip">MQTT</span><span class="chip">PubSubClient</span></div>
+<div class="note"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.4 7.5 9.5 4.3-1.1 7.5-4.9 7.5-9.5V6L12 3Z"></path><path d="m9 12 2 2 4-4"></path></svg><span>Las credenciales WiFi y del broker viven en secrets.h, excluido por .gitignore.</span></div>
+</div>
+<div class="terminal reveal">
+<div class="terminal-bar"><i></i><i></i><i></i><span>BusAccel · compilación</span></div>
+<pre><span class="p">$</span> arduino-cli compile --fqbn esp8266:esp8266:nodemcuv2 .
 <span class="p">$</span> arduino-cli upload -p /dev/ttyUSB0 --fqbn esp8266:esp8266:nodemcuv2 .</pre>
-      </div>
-    </div>
-  </div>
+</div>
+</div>
+</div>
 </section>
-
 <section class="section tight" id="docs">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="kicker">07 — Documentación</div>
-      <h2>Todo está escrito</h2>
-      <p class="section-sub">Cada decisión, cada límite y cada comando están documentados en el repositorio. Sin folletos: lo que funciona se muestra, lo que no, también.</p>
-    </div>
-    <div class="docs-grid reveal"><a class="doc-card" href="https://github.com/wanderc137/BusAccel-8266-v4/blob/main/README.md" target="_blank" rel="noopener"><span class="tag">README</span><h3>La guía completa</h3><p>Hardware, montaje, calibración, umbrales y MQTT.</p><span class="arrow">Abrir documento <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a class="doc-card" href="https://github.com/wanderc137/BusAccel-8266-v4/blob/main/docs/datasheet.md" target="_blank" rel="noopener"><span class="tag">DATASHEET</span><h3>Manual de operación</h3><p>Pines, I2C, LED, comando RECAL y diagnóstico.</p><span class="arrow">Abrir documento <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a class="doc-card" href="https://github.com/wanderc137/BusAccel-8266-v4/blob/main/docs/developer.md" target="_blank" rel="noopener"><span class="tag">DEVELOPER</span><h3>Guía de código</h3><p>Muestreo, ventana, setpoint y publicación.</p><span class="arrow">Abrir documento <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a class="doc-card" href="https://github.com/wanderc137/BusAccel-8266-v4/blob/main/docs/REFERENCES.md" target="_blank" rel="noopener"><span class="tag">REFERENCES</span><h3>Referencias</h3><p>ADXL345, ESP8266, MQTT y Arduino.</p><span class="arrow">Abrir documento <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
-  </div>
+<div class="wrap">
+<div class="section-head reveal">
+<div class="kicker">07 — Documentación</div>
+<h2>Todo está escrito</h2>
+<p class="section-sub">Cada decisión, cada límite y cada comando están documentados en el repositorio. Sin folletos: lo que funciona se muestra, lo que no, también.</p>
+</div>
+<div class="docs-grid reveal"><a class="doc-card" href="https://github.com/wanderc137/BusAccel-8266-v4/blob/main/README.md" rel="noopener" target="_blank"><span class="tag">README</span><h3>La guía completa</h3><p>Hardware, montaje, calibración, umbrales y MQTT.</p><span class="arrow">Abrir documento <svg viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a><a class="doc-card" href="https://github.com/wanderc137/BusAccel-8266-v4/blob/main/docs/datasheet.md" rel="noopener" target="_blank"><span class="tag">DATASHEET</span><h3>Manual de operación</h3><p>Pines, I2C, LED, comando RECAL y diagnóstico.</p><span class="arrow">Abrir documento <svg viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a><a class="doc-card" href="https://github.com/wanderc137/BusAccel-8266-v4/blob/main/docs/developer.md" rel="noopener" target="_blank"><span class="tag">DEVELOPER</span><h3>Guía de código</h3><p>Muestreo, ventana, setpoint y publicación.</p><span class="arrow">Abrir documento <svg viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a><a class="doc-card" href="https://github.com/wanderc137/BusAccel-8266-v4/blob/main/docs/REFERENCES.md" rel="noopener" target="_blank"><span class="tag">REFERENCES</span><h3>Referencias</h3><p>ADXL345, ESP8266, MQTT y Arduino.</p><span class="arrow">Abrir documento <svg viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></div>
+</div>
 </section>
-
-<section class="cta">
-  <div class="wrap">
-    <div class="cta-card reveal">
-      <div class="kicker" style="justify-content:center">Portfolio · 21 proyectos</div>
-      <h2>¿Te animás?</h2>
-      <p>Usá esto como base y referencia para medir impactos en un vehículo, detectar baches y publicar solo los eventos graves. Este proyecto es la prueba de que se puede hacer con componentes reales.</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="https://wanderc137.github.io/" target="_blank" rel="noopener">Ver todos los proyectos <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="btn btn-ghost" href="https://github.com/wanderc137/BusAccel-8266-v4" target="_blank" rel="noopener">Explorar el código</a>
-      </div>
-    </div>
-  </div>
+<section class="section tight"><div class="wrap"><div class="section-head"><div class="kicker">Tropiezos</div><h2>Los tropiezos, documentados</h2><p class="section-sub">Lo que no funcionó en las primeras versiones, con la corrección aplicada.</p></div><div class="fail-grid"><div class="fail"><div class="v">v2–v3 · bus I2C</div><h3>El recuperador I2C dejaba el sensor sin ACK</h3><p>La secuencia de pulsos sobre SCL/SDA de i2cBusRecover() dejaba al ADXL345 sin responder aunque el bus estuviera sano. Se eliminó la función y el sensor volvió a contestar en 0x53 con WHO_AM_I = 0xE5; el código lleva la nota de no reintroducirla.</p></div><div class="fail"><div class="v">v3 · contador RTC</div><h3>La RTC escribía más bytes de los debidos</h3><p>ESP.rtcUserMemoryRead/Write reciben el tamaño en bytes, no en palabras, y las llamadas originales escribían de más. Se corrigió con sizeof(...) y se añadió validación de magic y rango para descartar datos corruptos.</p></div><div class="fail"><div class="v">v4 · contrato MQTT</div><h3>El topic del plan no era el del firmware</h3><p>El PLAN especificaba report/peak con JSON {"peak":0.62}, pero el código publicaba report/value con texto plano. Se documentó el contrato real en README, datasheet y developer para que la integración no quedara rota.</p></div><div class="fail"><div class="v">v4 · primera ventana</div><h3>Pico falso de ~1 g tras el arranque</h3><p>El anillo de 100 muestras previas arranca con ceros; un golpe en el primer segundo puede calcular una desviación cercana a 1 g. Está declarado como limitación y no se corrigió en v4.</p></div></div></div></section><section class="section tight"><div class="wrap"><div class="section-head"><div class="kicker">Evaluación</div><h2>Cómo se mide este proyecto</h2><p class="section-sub">Seis criterios fijos, con la evidencia que respalda cada nota.</p></div><div class="rating-head"><div class="rating-avg">4.0<small>/5</small></div><p>Sirve a quien necesita un detector de golpes verticales de bajo costo y con documentación suficiente para reproducir el montaje. La limitación que más pesa es la medición de un solo eje y sin calibración trazable, que impide comparar vehículos o certificar daños.</p></div><div class="rating"><div class="rating-row"><div class="rating-name">Madurez</div><div class="rating-bar"><span style="width:80%"></span></div><div class="rating-score">4/5</div><div class="rating-note">v4 con 915 líneas, auditoría sin incidencias y compilación exit 0; las pruebas siguen siendo de banco, no de flota.</div></div><div class="rating-row"><div class="rating-name">Reproducibilidad</div><div class="rating-bar"><span style="width:60%"></span></div><div class="rating-score">3/5</div><div class="rating-note">FQBN esp8266:esp8266:nodemcuv2 y core 3.1.2 documentados, pero requiere secrets.h propio y no hay tests automatizados; la dispersión de ±20 % depende del montaje.</div></div><div class="rating-row"><div class="rating-name">Documentación</div><div class="rating-bar"><span style="width:100%"></span></div><div class="rating-score">5/5</div><div class="rating-note">README de 714 líneas, datasheet, developer, bitácora, referencias y tres SVG; solo se detectó una discrepancia menor de puerto MQTT (1883 vs 1886).</div></div><div class="rating-row"><div class="rating-name">Honestidad de límites</div><div class="rating-bar"><span style="width:100%"></span></div><div class="rating-score">5/5</div><div class="rating-note">Declara IRAM al 93 %, pico falso en el primer segundo, un solo eje y ausencia de GPS, almacenamiento y OTA.</div></div><div class="rating-row"><div class="rating-name">Valor demostrativo</div><div class="rating-bar"><span style="width:80%"></span></div><div class="rating-score">4/5</div><div class="rating-note">Muestra un pipeline de borde completo con ventana pre/post, setpoint automático y publicación condicional sobre un ESP8266.</div></div><div class="rating-row"><div class="rating-name">Facilidad de despliegue</div><div class="rating-bar"><span style="width:60%"></span></div><div class="rating-score">3/5</div><div class="rating-note">arduino-cli y broker estándar, pero exige credenciales, Client ID único y margen de IRAM de ~4,5 KB.</div></div></div></div></section><section class="section tight"><div class="wrap"><div class="section-head"><div class="kicker">Preguntas</div><h2>Lo que suelen preguntar</h2></div><div class="faq"><details><summary>¿Qué detecta exactamente?</summary><p>Golpes verticales sobre el chasis: mide la desviación del eje Z respecto de un setpoint calculado en reposo y reporta el pico de una ventana de ~2 s. No clasifica el origen del golpe.</p></details><details><summary>¿Qué no hace?</summary><p>No distingue bache, frenazo o reductor, no georreferencia, no guarda eventos localmente y no permite actualizar el firmware por OTA. Tampoco es una instrumentación calibrada.</p></details><details><summary>¿Cómo se compila y despliega?</summary><p>Con arduino-cli compile --fqbn esp8266:esp8266:nodemcuv2, un secrets.h basado en secrets.example.h y upload al NodeMCU. Después se configura el broker MQTT y se verifica el topic <id>/report/online.</p></details><details><summary>¿Qué se puede reutilizar?</summary><p>El anillo pre/post para capturar el contexto de un evento, el setpoint automático con RECAL, la publicación condicional y el watchdog por ping con reinicio.</p></details></div></div></section><section class="cta">
+<div class="wrap">
+<div class="cta-card reveal">
+<div class="kicker" style="justify-content:center">Portfolio · 21 proyectos</div>
+<h2>¿Te animás?</h2>
+<p>Usá esto como base y referencia para medir impactos en un vehículo, detectar baches y publicar solo los eventos graves. Este proyecto es la prueba de que se puede hacer con componentes reales.</p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="https://wanderc137.github.io/" rel="noopener" target="_blank">Ver todos los proyectos <svg viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<a class="btn btn-ghost" href="https://github.com/wanderc137/BusAccel-8266-v4" rel="noopener" target="_blank">Explorar el código</a>
+</div>
+</div>
+</div>
 </section>
 </main>
-
 <footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <div class="foot-brand"><span class="brand-mark"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="3"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/><circle cx="12" cy="12" r="2.5"/></svg></span>BusAccel</div>
-        <p class="foot-p">Menos datos, más señal.</p>
-      </div>
-      <div>
-        <h4>Este proyecto</h4>
-        <div class="foot-links">
-          <a href="https://github.com/wanderc137/BusAccel-8266-v4" target="_blank" rel="noopener">Repositorio en GitHub</a>
-          <a href="https://github.com/wanderc137/BusAccel-8266-v4/blob/main/README.md" target="_blank" rel="noopener">README técnico</a>
-          <a href="https://github.com/wanderc137/BusAccel-8266-v4/blob/main/docs/datasheet.md" target="_blank" rel="noopener">Datasheet</a>
-          <a href="https://github.com/wanderc137/BusAccel-8266-v4/blob/main/docs/developer.md" target="_blank" rel="noopener">Guía de desarrollador</a>
-          <a href="https://github.com/wanderc137/BusAccel-8266-v4/blob/main/docs/REFERENCES.md" target="_blank" rel="noopener">Referencias</a>
-        </div>
-      </div>
-      <div>
-        <h4>Otros proyectos</h4>
-        <div class="foot-links"><a href="https://wanderc137.github.io/proxy-openrouter-ia-chinas/">OpenRouter Proxy</a><a href="https://wanderc137.github.io/netEspNow-v1.4/">netEspNow</a><a href="https://wanderc137.github.io/nb2700-telemetria/">NB2700 Telemetría</a><a href="https://wanderc137.github.io/mega-free-chat/">Mega Free Chat</a><a href="https://wanderc137.github.io/CubeCell-LoRaWAN-Node-v1.3/">CubeCell LoRaWAN Bridge v1.3</a><a href="https://wanderc137.github.io/CashDroController/">CashDro Controller</a><a href="https://wanderc137.github.io/SpeechToTextAuxPy/">SpeechToText Aux</a><a href="https://wanderc137.github.io/teleAsistenciaV1.3/">Alerta Mayor</a><a href="https://wanderc137.github.io/TotemAutoatencion/">Totem Autoatención</a><a href="https://wanderc137.github.io/turnero/">Turnero</a><a href="https://wanderc137.github.io/valvulas-zigbee/">Válvulas Zigbee</a><a href="https://wanderc137.github.io/mesacerca/">MesaCerca</a><a href="https://wanderc137.github.io/permaweb-app/">Permaweb App</a><a href="https://wanderc137.github.io/AnalizadorRostroUNOQ/">AnalizadorRostro v1</a></div>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <span><a href="https://wanderc137.github.io/">Portfolio</a> · © 2026 wanderc137 · Licencia MIT</span>
-      <span>Diseñado y construido por wanderc137</span>
-    </div>
-  </div>
+<div class="wrap">
+<div class="foot-grid">
+<div>
+<div class="foot-brand"><span class="brand-mark"><svg viewbox="0 0 24 24"><rect height="14" rx="3" width="14" x="5" y="5"></rect><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"></path><circle cx="12" cy="12" r="2.5"></circle></svg></span>BusAccel</div>
+<p class="foot-p">Menos datos, más señal.</p>
+</div>
+<div>
+<h4>Este proyecto</h4>
+<div class="foot-links">
+<a href="https://github.com/wanderc137/BusAccel-8266-v4" rel="noopener" target="_blank">Repositorio en GitHub</a>
+<a href="https://github.com/wanderc137/BusAccel-8266-v4/blob/main/README.md" rel="noopener" target="_blank">README técnico</a>
+<a href="https://github.com/wanderc137/BusAccel-8266-v4/blob/main/docs/datasheet.md" rel="noopener" target="_blank">Datasheet</a>
+<a href="https://github.com/wanderc137/BusAccel-8266-v4/blob/main/docs/developer.md" rel="noopener" target="_blank">Guía de desarrollador</a>
+<a href="https://github.com/wanderc137/BusAccel-8266-v4/blob/main/docs/REFERENCES.md" rel="noopener" target="_blank">Referencias</a>
+</div>
+</div>
+<div>
+<h4>Otros proyectos</h4>
+<div class="foot-links"><a href="https://wanderc137.github.io/proxy-openrouter-ia-chinas/">OpenRouter Proxy</a><a href="https://wanderc137.github.io/netEspNow-v1.4/">netEspNow</a><a href="https://wanderc137.github.io/nb2700-telemetria/">NB2700 Telemetría</a><a href="https://wanderc137.github.io/mega-free-chat/">Mega Free Chat</a><a href="https://wanderc137.github.io/CubeCell-LoRaWAN-Node-v1.3/">CubeCell LoRaWAN Bridge v1.3</a><a href="https://wanderc137.github.io/CashDroController/">CashDro Controller</a><a href="https://wanderc137.github.io/SpeechToTextAuxPy/">SpeechToText Aux</a><a href="https://wanderc137.github.io/teleAsistenciaV1.3/">Alerta Mayor</a><a href="https://wanderc137.github.io/TotemAutoatencion/">Totem Autoatención</a><a href="https://wanderc137.github.io/turnero/">Turnero</a><a href="https://wanderc137.github.io/valvulas-zigbee/">Válvulas Zigbee</a><a href="https://wanderc137.github.io/mesacerca/">MesaCerca</a><a href="https://wanderc137.github.io/permaweb-app/">Permaweb App</a><a href="https://wanderc137.github.io/AnalizadorRostroUNOQ/">AnalizadorRostro v1</a></div>
+</div>
+</div>
+<div class="foot-bottom">
+<span><a href="https://wanderc137.github.io/">Portfolio</a> · © 2026 wanderc137 · Licencia MIT</span>
+<span>Diseñado y construido por wanderc137</span>
+</div>
+</div>
 </footer>
-
 <script>
 (function(){
   var io = new IntersectionObserver(function(entries){
@@ -443,8 +463,7 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.08);pa
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 })();
 </script>
-
 <script>window.PORTFOLIO_COMMUNITY = {"account": "wanderc137", "repo": "BusAccel-8266-v4", "coinNamespace": "wanderc137-busaccel-8266-v4-coins-v1", "faqs": [{"q": "¿Qué detecta?", "a": "Impactos verticales con un ADXL345 sobre I2C; calcula el setpoint y mide el pico en una ventana de ±1 s a 100 Hz."}, {"q": "¿Cuándo publica?", "a": "Solo si el pico supera <b>0,58 g</b>; los eventos menores no se envían por MQTT."}, {"q": "¿Qué es RECAL?", "a": "El comando para recalcular el setpoint después de cambiar el montaje."}, {"q": "¿Qué pasa si se mueve el sensor?", "a": "El setpoint automático absorbe el ángulo de montaje; si cambia mucho, hay que recalibrar."}, {"q": "¿Cuáles son los límites?", "a": "Un solo eje, sin GPS/timestamp, QoS 0 e IRAM al 93 %."}]};</script>
-<script src="assets/community.js?v=5" defer></script>
+<script defer="" src="assets/community.js?v=5"></script>
 </body>
 </html>
