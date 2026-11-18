@@ -291,7 +291,8 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.08);pa
 @media(max-width:760px){.concept-grid,.fail-grid{grid-template-columns:1fr}.concept-side{border-left:0;padding-left:0}}
 
 </style>
-<link href="assets/community.css?v=5" rel="stylesheet"/></head>
+<link href="assets/community.css?v=5" rel="stylesheet"/><link href="rec/player.css?v=1" rel="stylesheet"/>
+</head>
 <body style="--accent:#FFB020;--accent2:#FF5C5C">
 <div class="grid-overlay"></div>
 <div class="glow one"></div>
@@ -306,6 +307,7 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.08);pa
 <a href="#problema">Visión</a>
 <a href="#como">Cómo funciona</a>
 <a href="#arquitectura">Arquitectura</a>
+<a href="#video">Video</a>
 <a href="#docs">Documentación</a>
 <a href="#comunidad">Comunidad</a>
 <a class="btn btn-ghost" href="https://github.com/wanderc137/BusAccel-8266-v4" rel="noopener" style="padding:9px 15px" target="_blank">GitHub</a>
@@ -356,6 +358,45 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.08);pa
 <div class="timeline reveal"><div class="step"><div class="step-num">01</div><div class="step-body"><h3>Muestrear</h3><p>El ADXL345 entrega aceleración en los tres ejes a 100 Hz por I2C.</p></div></div><div class="step"><div class="step-num">02</div><div class="step-body"><h3>Calibrar</h3><p>El nodo calcula un setpoint con la vibración de base y lo ajusta con el comando RECAL.</p></div></div><div class="step"><div class="step-num">03</div><div class="step-body"><h3>Detectar</h3><p>Cuando la aceleración supera el umbral de evento, se abre una ventana de ±1 s.</p></div></div><div class="step"><div class="step-num">04</div><div class="step-body"><h3>Publicar</h3><p>Si el pico de la ventana supera 0,58 g, se envía el evento por MQTT con sus datos.</p></div></div></div>
 </div>
 </section>
+
+<section class="section tight rec-section" id="video" style="--accent:#2E7DFF;--accent2:#14F195">
+<div class="wrap">
+<div class="rec-kicker">REC · VIDEO · 3:04</div>
+<h2 class="rec-h2">BusAccel · el golpe medido, no adivinado</h2>
+<p class="rec-lead">Un nodo que mide el golpe vertical de un bus a 100 Hz, reconstruye el pico con historia previa y publica por MQTT solo los eventos que superan 0,58 g.</p>
+<div class="rec-banner">
+<span class="rec-banner-icon">📋</span>
+<strong>Puedes copiar y pegar los comandos del video desde el video !!!</strong>
+<span>Pausá, seleccioná el texto de la terminal y copiá.</span>
+</div>
+<div class="rec-shell">
+<div class="rec-bar"><i></i><i></i><i></i><span class="rec-title">BusAccel · el golpe medido, no adivinado · asciinema</span><span class="rec-rec"><b></b>REC</span></div>
+<div class="rec-screen-wrap">
+<div class="rec-screen" id="rec-screen"></div>
+<div class="rec-poster" id="rec-poster">
+<div class="rec-kicker">ASCIINEMA · 3:04</div>
+<h3>BusAccel · el golpe medido, no adivinado</h3>
+<p>Un nodo que mide el golpe vertical de un bus a 100 Hz, reconstruye el pico con historia previa y publica por MQTT solo los eventos que superan 0,58 g.</p>
+<div class="rec-poster-meta">BusAccel-8266-v4 · código real</div>
+<button class="rec-btn rec-primary" id="rec-start" type="button">▶ Reproducir</button>
+</div>
+</div>
+<div class="rec-controls">
+<button class="rec-btn rec-primary" id="rec-play" type="button">▶ Reproducir</button>
+<button class="rec-btn" id="rec-restart" type="button">↺ Reiniciar</button>
+<input class="rec-progress" id="rec-range" type="range" min="0" max="1000" value="0" aria-label="Progreso"/>
+<span class="rec-time" id="rec-time">0:00 / 3:04</span>
+<select class="rec-speed" id="rec-speed" aria-label="Velocidad"><option value="1">1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select>
+<button class="rec-btn" id="rec-full" type="button" title="Pantalla completa">⛶</button>
+<button class="rec-btn" id="rec-copy" type="button">⧉ Copiar comandos</button>
+<a class="rec-download" href="rec/BusAccel-8266-v4.cast" download>descargar .cast</a>
+</div>
+</div>
+<p class="rec-note">Guion basado en el código y la documentación del repo; el prototipo está validado en banco y no mide IRI ni geolocaliza eventos. Las credenciales de secrets.h no se muestran.</p>
+<div class="rec-chapters"><span class="rec-chip"><b>0:06</b> EL PROBLEMA</span><span class="rec-chip"><b>0:20</b> ARQUITECTURA</span><span class="rec-chip"><b>0:36</b> HARDWARE</span><span class="rec-chip"><b>0:50</b> CALIBRACIÓN</span><span class="rec-chip"><b>1:08</b> EL NÚCLEO</span><span class="rec-chip"><b>1:22</b> EL NÚCLEO</span><span class="rec-chip"><b>1:38</b> EL NÚCLEO</span><span class="rec-chip"><b>1:54</b> RED</span><span class="rec-chip"><b>2:08</b> RED</span><span class="rec-chip"><b>2:23</b> TIEMPO</span><span class="rec-chip"><b>2:41</b> CÓMO EJECUTARLO</span></div>
+</div>
+</section>
+
 <section class="section tight" id="arquitectura">
 <div class="wrap">
 <div class="section-head reveal">
@@ -465,5 +506,7 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.08);pa
 </script>
 <script>window.PORTFOLIO_COMMUNITY = {"account": "wanderc137", "repo": "BusAccel-8266-v4", "coinNamespace": "wanderc137-busaccel-8266-v4-coins-v1", "faqs": [{"q": "¿Qué detecta?", "a": "Impactos verticales con un ADXL345 sobre I2C; calcula el setpoint y mide el pico en una ventana de ±1 s a 100 Hz."}, {"q": "¿Cuándo publica?", "a": "Solo si el pico supera <b>0,58 g</b>; los eventos menores no se envían por MQTT."}, {"q": "¿Qué es RECAL?", "a": "El comando para recalcular el setpoint después de cambiar el montaje."}, {"q": "¿Qué pasa si se mueve el sensor?", "a": "El setpoint automático absorbe el ángulo de montaje; si cambia mucho, hay que recalibrar."}, {"q": "¿Cuáles son los límites?", "a": "Un solo eje, sin GPS/timestamp, QoS 0 e IRAM al 93 %."}]};</script>
 <script defer="" src="assets/community.js?v=6"></script>
+<script defer src="rec/BusAccel-8266-v4.cast.js?v=1"></script>
+<script defer src="rec/player.js?v=1"></script>
 </body>
 </html>
